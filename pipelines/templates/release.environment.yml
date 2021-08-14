@@ -23,10 +23,10 @@ jobs:
         parameters:
           artifactName: ${{ parameters.environment }}_${{ parameters.region }}
           planAdditionalCommandOptions: '-var-file=variables/${{ parameters.environment }}.${{ parameters.region }}.tfvars'
-          serviceConnectionName: ${{ parameters.serviceConnectionName }}
-          stateBucketName: ${{ parameters.stateBucketName }}
-          stateLockTableName: ${{ parameters.stateLockTableName }}
-          workspaceName: expensely-app-certificate-${{ parameters.environment }}
+          serviceConnectionName: '${{ parameters.serviceConnectionName }}'
+          stateBucketName: '${{ parameters.stateBucketName }}'
+          stateLockTableName: '${{ parameters.stateLockTableName }}'
+          workspaceName: 'expensely-app-certificate-${{ parameters.environment }}'
   - template: job/approve.yml@templates
     parameters:
       dependsOn: plan
@@ -44,4 +44,4 @@ jobs:
             - template: aws/terraform/apply.yml@templates
               parameters:
                 artifactName: ${{ parameters.environment }}_${{ parameters.region }}
-                serviceConnectionName: ${{ parameters.serviceConnectionName }}
+                serviceConnectionName: '${{ parameters.serviceConnectionName }}'
