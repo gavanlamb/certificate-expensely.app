@@ -25,8 +25,8 @@ pr:
       - '*'
 
 stages:
-  - stage:  ${{ variables.environment }}
-    displayName:  ${{ variables.environment }}
+  - stage: preview
+    displayName: Preview
     dependsOn: []
     variables:
       - template: variables/preview.us-east-1.yml@expensely-templates
@@ -39,8 +39,8 @@ stages:
           stateLockTableName: $(terraformStateLockTableName)
           region: $(region)
 
-  - stage:  ${{ variables.environment }}
-    displayName:  ${{ variables.environment }}
+  - stage: production
+    displayName: Production
     dependsOn: []
     variables:
       - template: variables/production.us-east-1.yml@expensely-templates
